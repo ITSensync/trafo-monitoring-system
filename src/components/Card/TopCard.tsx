@@ -14,7 +14,7 @@ export default function TopCard() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               // fill=""
-              className="size-9 fill-blue-400"
+              className="size-12 fill-blue-400"
             >
               <path
                 fillRule="evenodd"
@@ -36,7 +36,7 @@ export default function TopCard() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               // fill="currentColor"
-              className="size-9 fill-green-400"
+              className="size-12 fill-green-400"
             >
               <path
                 fillRule="evenodd"
@@ -58,7 +58,7 @@ export default function TopCard() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               // fill="currentColor"
-              className="size-9 fill-red-400"
+              className="size-12 fill-red-400"
             >
               <path
                 fillRule="evenodd"
@@ -80,7 +80,7 @@ export default function TopCard() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               // fill="currentColor"
-              className="size-9 fill-zinc-600"
+              className="size-12 fill-zinc-600"
             >
               <path
                 fillRule="evenodd"
