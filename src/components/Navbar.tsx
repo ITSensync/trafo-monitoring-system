@@ -19,8 +19,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
               </p>
             </div>
             <div className="h-0.5 w-full border bg-amber-500 mb-4"></div>
-            <div></div>
-            <li className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins mb-2">
+            <li className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins mb-2  cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -33,7 +32,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
 
               <a className="text-lg font-medium">Home</a>
             </li>
-            <li className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins">
+            <li className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
