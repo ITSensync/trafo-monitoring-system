@@ -66,7 +66,7 @@ export default function ParameterGraph() {
         borderColor: "#26abff",
         backgroundColor: "rgba(38, 171, 255, 0.2)",
         tension: 0.1,
-        fill: true,
+        // fill: true,
       },
     ],
   };

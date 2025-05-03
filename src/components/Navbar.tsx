@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
@@ -30,7 +31,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
                 <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
               </svg>
 
-              <a className="text-lg font-medium">Home</a>
+              <Link href="/" className="text-lg font-medium">Home</Link>
             </li>
             <li className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins cursor-pointer">
               <svg
@@ -46,7 +47,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
                 />
               </svg>
 
-              <a className="text-lg font-medium">Sign Out</a>
+              <Link href="/login" className="text-lg font-medium">Sign Out</Link>
             </li>
           </ul>
         </div>
