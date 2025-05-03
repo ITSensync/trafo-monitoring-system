@@ -6,7 +6,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
     <>
       <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-side">
+        <div className="drawer-side z-[999]">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"
