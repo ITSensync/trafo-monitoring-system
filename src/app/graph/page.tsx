@@ -8,7 +8,7 @@ import "react-day-picker/style.css";
 export default function page() {
   const defaultClassNames = getDefaultClassNames();
   return (
-    <BaseLayout searchBar={false}>
+    <BaseLayout searchBar={false} className="pb-10">
       {/* <div className="p-5 bg-white h-fit mx-5 mt-5 w-[20dvw] rounded-lg">
         <p className="font-semibold font-poppins mb-2 text-sm">
           Filter by date:
