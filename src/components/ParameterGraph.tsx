@@ -30,7 +30,7 @@ export default function ParameterGraph() {
         display: false,
       },
       title: {
-        display: true,
+        display: false,
         text: "Parameter Trafo Chart",
         font: { size: 20, family: "Poppins" },
         color: "#26abff",

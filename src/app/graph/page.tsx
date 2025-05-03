@@ -9,14 +9,16 @@ export default function page() {
   const defaultClassNames = getDefaultClassNames();
   return (
     <BaseLayout searchBar={false}>
-      <div className="p-5 bg-white h-fit mx-5 mt-5 w-[20dvw] rounded-lg">
-        <p className="font-semibold font-poppins mb-2 text-sm">Filter by date:</p>
+      {/* <div className="p-5 bg-white h-fit mx-5 mt-5 w-[20dvw] rounded-lg">
+        <p className="font-semibold font-poppins mb-2 text-sm">
+          Filter by date:
+        </p>
         <button
           popoverTarget="rdp-popover"
           className="input input-border input-warning"
           style={{ anchorName: "--rdp" } as React.CSSProperties}
         >
-          {/* {date ? date.toLocaleDateString() : "Pick a date"} */}
+          {date ? date.toLocaleDateString() : "Pick a date"}
           Pick a Date
         </button>
         <div
@@ -34,12 +36,49 @@ export default function page() {
               button_next: `${defaultClassNames.button_next} `,
             }}
             mode="single"
-            // selected={date}
-            // onSelect={setDate}
+            selected={date}
+            onSelect={setDate}
           />
         </div>
-      </div>
-      <div className="bg-white/95 my-5 mx-5 rounded-xl px-6 pt-5 pb-8 h-fit">
+      </div> */}
+      <div className="bg-white/95 my-5 mx-5 rounded-xl px-6 pt-5 pb-4 h-fit">
+        <div className="flex flex-row items-center justify-between w-full px-5 mb-4">
+          <p className="font-poppins font-bold text-blue-500 text-xl">
+            PARAMETER TRAFO GRAPH
+          </p>
+          <div className="w-1/2 flex flex-col items-end">
+            <p className="font-semibold font-poppins mb-2 text-sm">
+              Filter by date:
+            </p>
+            <button
+              popoverTarget="rdp-popover"
+              className="input input-border input-warning w-[15dvw]"
+              style={{ anchorName: "--rdp" } as React.CSSProperties}
+            >
+              {/* {date ? date.toLocaleDateString() : "Pick a date"} */}
+              Pick a Date
+            </button>
+            <div
+              popover="auto"
+              id="rdp-popover"
+              className="dropdown"
+              style={{ positionAnchor: "--rdp" } as React.CSSProperties}
+            >
+              <DayPicker
+                classNames={{
+                  today: `rounded-full bg-amber-400 text-white font-bold`, // Add a border to today's date
+                  selected: `bg-amber-500 border-amber-500 text-white font-bold`, // Highlight the selected day
+                  root: `${defaultClassNames.root} shadow-lg p-5 bg-white border border-zinc-300 rounded-lg`, // Add a shadow to the root element
+                  chevron: `${defaultClassNames.chevron} text-orange-400`,
+                  button_next: `${defaultClassNames.button_next} `,
+                }}
+                mode="single"
+                // selected={date}
+                // onSelect={setDate}
+              />
+            </div>
+          </div>
+        </div>
         <ParameterGraph />
       </div>
     </BaseLayout>
