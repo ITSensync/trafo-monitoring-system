@@ -16,7 +16,8 @@ export default function BottomCard() {
           <div className="flex flex-col items-center gap-2">
             <DeviceThermostatIcon className="" color="error" fontSize="large" />
             <div className="flex flex-row">
-              <div
+              <Link
+                href={"/map"}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -32,7 +33,7 @@ export default function BottomCard() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </Link>
               <Link
                 href={"/graph"}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
@@ -64,7 +65,8 @@ export default function BottomCard() {
           <div className="flex flex-col items-center gap-2">
             <ElectricMeterIcon fontSize="large" color="warning" />
             <div className="flex flex-row">
-              <div
+              <Link
+                href={"/map"}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -80,7 +82,7 @@ export default function BottomCard() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </Link>
               <Link
                 href={"/graph"}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
@@ -112,7 +114,8 @@ export default function BottomCard() {
           <div className="flex flex-col items-center gap-2">
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
-              <div
+              <Link
+                href={"/map"}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -128,7 +131,7 @@ export default function BottomCard() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </Link>
               <Link
                 href={"/graph"}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
@@ -161,7 +164,7 @@ export default function BottomCard() {
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={"/graph"}
+                href={"/map"}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -209,7 +212,8 @@ export default function BottomCard() {
           <div className="flex flex-col items-center gap-2">
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
-              <div
+              <Link
+                href={"/map"}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -225,7 +229,7 @@ export default function BottomCard() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </Link>
               <Link
                 href={"/graph"}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
