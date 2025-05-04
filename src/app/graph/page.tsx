@@ -1,5 +1,6 @@
 import BaseLayout from "@/components/BaseLayout";
 import DayPick from "@/components/DayPick";
+import ParameterGraph from "@/components/ParameterGraph";
 import React from "react";
 import "react-day-picker/style.css";
 
@@ -38,7 +39,15 @@ export default function page() {
           />
         </div>
       </div> */}
-      <DayPick />
+      <div className="bg-white/95 my-5 mx-5 rounded-xl px-6 pt-5 pb-4 h-fit">
+        <div className="flex flex-row items-center justify-between w-full px-5 mb-4">
+          <p className="font-poppins font-bold text-blue-500 text-xl">
+            PARAMETER TRAFO GRAPH
+          </p>
+          <DayPick />
+        </div>
+        <ParameterGraph />
+      </div>
     </BaseLayout>
   );
 }
