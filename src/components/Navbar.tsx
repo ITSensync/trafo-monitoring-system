@@ -1,7 +1,18 @@
+'use client';
 import Link from "next/link";
 import React from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
+  const router = useRouter();
+  const handleSignOutBtn = () => {
+    Cookies.remove("auth_token");
+    setTimeout(() => {
+      router.replace("/login");
+    }, 3000);
+  };
+
   return (
     <>
       <div className="drawer">
@@ -37,6 +48,7 @@ export default function Navbar({ searchBar = true }: { searchBar?: boolean }) {
               <p className="text-lg font-medium">Home</p>
             </Link>
             <Link
+              onClick={handleSignOutBtn}
               href={"/login"}
               className="flex flex-row items-center rounded-lg hover:bg-amber-50 font-poppins cursor-pointer gap-5 px-3 py-2"
             >
