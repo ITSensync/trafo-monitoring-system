@@ -1,4 +1,3 @@
-"use client";
 import BaseLayout from "@/components/BaseLayout";
 import LegendCard from "@/components/Card/LegendCard";
 import ParameterMap from "@/components/ParameterMap";
