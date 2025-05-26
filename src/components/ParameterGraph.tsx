@@ -31,9 +31,9 @@ export default function ParameterGraph() {
       },
       title: {
         display: false,
-        text: "Parameter Trafo Chart",
+        text: "Suhu Trafo Chart",
         font: { size: 20, family: "Poppins" },
-        color: "#26abff",
+        color: "#FF6467",
       },
     },
     scales: {
@@ -63,7 +63,7 @@ export default function ParameterGraph() {
         data: Array.from({ length: 25 }, () =>
           Math.floor(Math.random() * 4201)
         ), // nilai antara 0 - 4200
-        borderColor: "#26abff",
+        borderColor: "#FF6467",
         backgroundColor: "rgba(38, 171, 255, 0.2)",
         tension: 0.1,
         // fill: true,

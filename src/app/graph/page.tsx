@@ -47,10 +47,10 @@ export default function page() {
       </div> */}
       <div className="bg-white/95 my-5 mx-5 rounded-xl px-6 pt-5 pb-4 h-fit">
         <div className="flex flex-row items-center justify-between w-full px-5 mb-4">
-          <p className="font-poppins font-bold text-blue-500 text-xl">
-            PARAMETER TRAFO GRAPH
-          </p>
           <DayPick />
+          <p className="font-poppins font-bold text-red-400 text-xl">
+            {`Suhu > 90°C Grafik`}
+          </p>
         </div>
         <ParameterGraph />
       </div>

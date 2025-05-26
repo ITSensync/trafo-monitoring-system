@@ -6,7 +6,7 @@ import "react-day-picker/style.css";
 export default function DayPick() {
   const defaultClassNames = getDefaultClassNames();
   return (
-    <div className="w-1/2 flex flex-col items-end">
+    <div className="w-1/2 flex flex-col items-start">
       <p className="font-semibold font-poppins mb-2 text-sm">Filter by date:</p>
       <button
         popoverTarget="rdp-popover"
