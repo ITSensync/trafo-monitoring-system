@@ -7,3 +7,9 @@ export function utcToWib(date: string) {
 
   return formatted;
 }
+
+export function textTime(date: string) {
+  const formatted = format(date, "HH:mm:ss - dd/MM/yyyy");
+
+  return formatted;
+}

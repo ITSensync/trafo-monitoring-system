@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function LegendCard() {
+export default function LegendCard({ totalSite }: { totalSite: number }) {
   return (
     <div className="absolute top-[90px] right-10 z-[1] bg-white w-fit p-4 rounded-lg border border-zinc-300 shadow-xl">
       <p className="font-poppins font-extrabold  underline text-lg">
@@ -11,7 +11,7 @@ export default function LegendCard() {
         <div className="badge badge-error text-white p-3 font-semibold">
           Suhu {`>`} 90°C{" "}
         </div>
-        <p className="font-poppins font-medium text-lg">: 600 Site</p>
+        <p className="font-poppins font-medium text-lg">: {totalSite} Site</p>
       </div>
     </div>
   );
