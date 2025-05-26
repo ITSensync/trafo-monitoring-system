@@ -24,7 +24,7 @@ export default function BottomCard({
             <DeviceThermostatIcon className="" color="error" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={"/map"}
+                href={{ pathname: "/map", query: { param: "suhu" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -42,7 +42,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={"/graph"}
+                href={{ pathname: "/graph", query: { param: "suhu" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="Lihat Grafik"
               >
@@ -75,7 +75,7 @@ export default function BottomCard({
             <ElectricMeterIcon fontSize="large" color="warning" />
             <div className="flex flex-row">
               <Link
-                href={"/map"}
+                href={{ pathname: "/map", query: { param: "volt" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -93,7 +93,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={"/graph"}
+                href={{ pathname: "/graph", query: { param: "volt" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="Lihat Grafik"
               >
@@ -126,7 +126,7 @@ export default function BottomCard({
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={"/map"}
+               href={{ pathname: "/map", query: { param: "arus1" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -144,7 +144,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={"/graph"}
+                href={{ pathname: "/graph", query: { param: "arus1" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="Lihat Grafik"
               >
@@ -177,7 +177,7 @@ export default function BottomCard({
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={"/map"}
+                href={{ pathname: "/map", query: { param: "arus2" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -195,7 +195,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={"/graph"}
+                href={{ pathname: "/graph", query: { param: "arus2" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="Lihat Grafik"
               >
@@ -228,7 +228,7 @@ export default function BottomCard({
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={"/map"}
+                href={{ pathname: "/map", query: { param: "arus3" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="Lihat peta"
               >
@@ -246,7 +246,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={"/graph"}
+                href={{ pathname: "/graph", query: { param: "arus3" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="Lihat Grafik"
               >

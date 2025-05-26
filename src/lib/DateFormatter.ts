@@ -9,7 +9,9 @@ export function utcToWib(date: string) {
 }
 
 export function textTime(date: string) {
-  const formatted = format(date, "HH:mm:ss - dd/MM/yyyy");
+  const timeZone = "UTC";
+  const zonedDate = toZonedTime(date, timeZone);
+  const formatted = format(zonedDate, "HH:mm:ss - dd/MM/yyyy", { timeZone });
 
   return formatted;
 }

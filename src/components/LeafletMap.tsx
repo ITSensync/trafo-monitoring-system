@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-require-imports */
 "use client";
 import "leaflet/dist/leaflet.css";
@@ -8,6 +9,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import { Monitoring } from "@/Types/Monitoring";
 import { textTime } from "@/lib/DateFormatter";
+import { useSearchParams } from "next/navigation";
 
 // fix icon issues
 
@@ -51,6 +53,8 @@ const yellowIcon = new L.Icon({
 });
 
 export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
+  const searchParams = useSearchParams();
+  const param = searchParams.get("param");
   const mapRef = useRef(null);
   const updatedMapData = mapData.map((item) => ({
     lat: 3.5952 + (Math.random() - 0.5) * 0.105,
@@ -88,6 +92,152 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
 
   const combinedSite = [...updatedMapData, ...siteCoordinates];
 
+  const getBadgeText = (param: string, siteCoor: any) => {
+    switch (param) {
+      case "suhu":
+        return `${siteCoor.suhu_trafo} °C`;
+      case "volt":
+        return `${siteCoor.volt} V`;
+      case "arus1":
+        return `${siteCoor.arus1} A`;
+      case "arus2":
+        return `${siteCoor.arus2} A`;
+      case "arus3":
+        return `${siteCoor.arus3} A`;
+      default:
+        return "-";
+    }
+  };
+
+  const getBadgeColor = (param: string) => {
+    switch (param) {
+      case "suhu":
+        return "badge-error";
+      case "volt":
+        return "badge-warning";
+      case "arus1":
+        return "badge-info";
+      case "arus2":
+        return "badge-info";
+      case "arus3":
+        return "badge-info";
+      default:
+        return "badge-ghost";
+    }
+  };
+
+  const renderTable = (param: string, siteCoor: any) => {
+    switch (param) {
+      case "suhu":
+        return (
+          <table className="table">
+            <thead className="text-black font-bold">
+              <tr>
+                <th className="px-1 py-2">Volt (V)</th>
+                <th className="px-1 py-2">Arus1 (A)</th>
+                <th className="px-1 py-2">Arus2 (A)</th>
+                <th className="px-1 py-2">Arus3 (A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-center">
+                <td className="px-1 py-2">{siteCoor.volt}</td>
+                <td className="px-1 py-2">{siteCoor.arus1}</td>
+                <td className="px-1 py-2">{siteCoor.arus2}</td>
+                <td className="px-1 py-2">{siteCoor.arus3}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      case "volt":
+        return (
+          <table className="table">
+            <thead className="text-black font-bold">
+              <tr>
+                <th className="px-1 py-2">Suhu (°C)</th>
+                <th className="px-1 py-2">Arus1 (A)</th>
+                <th className="px-1 py-2">Arus2 (A)</th>
+                <th className="px-1 py-2">Arus3 (A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-center">
+                <td className="px-1 py-2">{siteCoor.suhu_trafo}</td>
+                <td className="px-1 py-2">{siteCoor.arus1}</td>
+                <td className="px-1 py-2">{siteCoor.arus2}</td>
+                <td className="px-1 py-2">{siteCoor.arus3}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      case "arus1":
+        return (
+          <table className="table">
+            <thead className="text-black font-bold">
+              <tr>
+                <th className="px-1 py-2">Suhu (°C)</th>
+                <th className="px-1 py-2">Volt (V)</th>
+                <th className="px-1 py-2">Arus2 (A)</th>
+                <th className="px-1 py-2">Arus3 (A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-center">
+                <td className="px-1 py-2">{siteCoor.suhu_trafo}</td>
+                <td className="px-1 py-2">{siteCoor.volt}</td>
+                <td className="px-1 py-2">{siteCoor.arus2}</td>
+                <td className="px-1 py-2">{siteCoor.arus3}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      case "arus2":
+        return (
+          <table className="table">
+            <thead className="text-black font-bold">
+              <tr>
+                <th className="px-1 py-2">Suhu (°C)</th>
+                <th className="px-1 py-2">Volt (V)</th>
+                <th className="px-1 py-2">Arus1 (A)</th>
+                <th className="px-1 py-2">Arus3 (A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-center">
+                <td className="px-1 py-2">{siteCoor.suhu_trafo}</td>
+                <td className="px-1 py-2">{siteCoor.volt}</td>
+                <td className="px-1 py-2">{siteCoor.arus1}</td>
+                <td className="px-1 py-2">{siteCoor.arus3}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      case "arus3":
+        return (
+          <table className="table">
+            <thead className="text-black font-bold">
+              <tr>
+                <th className="px-1 py-2">Suhu (°C)</th>
+                <th className="px-1 py-2">Volt (V)</th>
+                <th className="px-1 py-2">Arus1 (A)</th>
+                <th className="px-1 py-2">Arus2 (A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="text-center">
+                <td className="px-1 py-2">{siteCoor.suhu_trafo}</td>
+                <td className="px-1 py-2">{siteCoor.volt}</td>
+                <td className="px-1 py-2">{siteCoor.arus1}</td>
+                <td className="px-1 py-2">{siteCoor.arus2}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      default:
+        return <></>;
+    }
+  };
+
   return (
     <div className="relative">
       <MapContainer
@@ -113,8 +263,12 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
               <div className="font-montserrat w-fit pb-2">
                 <div className="flex justify-between items-center mt-6">
                   <h3 className="text-lg font-black">{siteCoor.trafoId}</h3>
-                  <span className="badge badge-error text-white font-bold p-2">
-                    {siteCoor.suhu_trafo} °C
+                  <span
+                    className={`badge ${getBadgeColor(
+                      param ? param : "-"
+                    )} text-white font-bold p-2`}
+                  >
+                    {getBadgeText(param ? param : "-", siteCoor)}
                   </span>
                 </div>
                 <div className="flex flex-row justify-between items-center text-xs mt-2">
@@ -128,24 +282,7 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
                   {siteCoor.alamat}
                 </h5>
                 <div className="overflow-x-fit rounded-box border border-zinc-900 bg-white-200">
-                  <table className="table">
-                    <thead className="text-black font-bold">
-                      <tr>
-                        <th className="px-1 py-2">Volt (V)</th>
-                        <th className="px-1 py-2">Arus1 (A)</th>
-                        <th className="px-1 py-2">Arus2 (A)</th>
-                        <th className="px-1 py-2">Arus3 (A)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="text-center">
-                        <td className="px-1 py-2">{siteCoor.volt}</td>
-                        <td className="px-1 py-2">{siteCoor.arus1}</td>
-                        <td className="px-1 py-2">{siteCoor.arus2}</td>
-                        <td className="px-1 py-2">{siteCoor.arus3}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  {renderTable(param ? param : "-", siteCoor)}
                 </div>
               </div>
             </Popup>
