@@ -3,14 +3,21 @@ import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import ElectricMeterIcon from "@mui/icons-material/ElectricMeter";
 import FlashAutoIcon from "@mui/icons-material/FlashAuto";
 import Link from "next/link";
+import { StatsData } from "@/Types/Stats";
 
-export default function BottomCard() {
+export default function BottomCard({
+  statsData,
+}: {
+  statsData: StatsData | null;
+}) {
   return (
     <>
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">600</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.cpuMoreThan90C : 0}
+            </p>
             <p className="font-poppins text-xs">{"Suhu > 90°C"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -59,7 +66,9 @@ export default function BottomCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">1200</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.lessThan250V : 0}
+            </p>
             <p className="font-poppins text-xs">{"Voltase < 250V"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -108,7 +117,9 @@ export default function BottomCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">200</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.moreThan300A1 : 0}
+            </p>
             <p className="font-poppins text-xs">{"Arus Phase 1 > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -157,7 +168,9 @@ export default function BottomCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">1200</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.moreThan300A2 : 0}
+            </p>
             <p className="font-poppins text-xs">{"Arus Phase 2 > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -206,7 +219,9 @@ export default function BottomCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">1000</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.moreThan300A3 : 0}
+            </p>
             <p className="font-poppins text-xs">{"Arus Phase 3 > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">

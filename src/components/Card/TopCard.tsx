@@ -1,12 +1,19 @@
+import { StatsData } from "@/Types/Stats";
 import React from "react";
 
-export default function TopCard() {
+export default function TopCard({
+  statsData,
+}: {
+  statsData: StatsData | null;
+}) {
   return (
     <>
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">4200</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.allDevice : 0}
+            </p>
             <p className="font-poppins text-md">All Devices</p>
           </div>
           <div>
@@ -28,8 +35,10 @@ export default function TopCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">3200</p>
-            <p className="font-poppins text-md">Up-to-date</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.activeDevice : 0}
+            </p>
+            <p className="font-poppins text-md">Active</p>
           </div>
           <div>
             <svg
@@ -50,29 +59,9 @@ export default function TopCard() {
       <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">700</p>
-            <p className="font-poppins text-md">Not update</p>
-          </div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              // fill="currentColor"
-              className="size-12 fill-red-400"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div className="h-[20dvh] w-full bg-white rounded-xl p-4 flex items-center">
-        <div className="flex flex-row items-center justify-between w-full">
-          <div className="flex flex-col items-start gap-2">
-            <p className="font-poppins font-extrabold text-3xl">300</p>
+            <p className="font-poppins font-extrabold text-3xl">
+              {statsData ? statsData.inactiveDevice : 0}
+            </p>
             <p className="font-poppins text-md">Inactive</p>
           </div>
           <div>

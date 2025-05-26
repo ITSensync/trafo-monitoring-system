@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
   },
+  env: {
+    WS_URL: process.env.WS_URL,
+    API_URL: process.env.API_URL,
+  },
 };
 
 export default nextConfig;
