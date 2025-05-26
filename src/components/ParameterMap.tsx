@@ -17,6 +17,14 @@ export default function ParameterMap() {
     []
   );
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      window.location.reload();
+    }, 5 * 60 * 1000); // 5 menit = 300.000 ms
+
+    return () => clearInterval(interval); // bersihkan saat komponen unmount
+  }, []);
+
   const loadData = async () => {
     const response = await monitoringService.getLatest();
     if (response.data) {
