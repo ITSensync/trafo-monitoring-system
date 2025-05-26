@@ -16,7 +16,7 @@ export default function BottomCard({
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-col items-start gap-2">
             <p className="font-poppins font-extrabold text-3xl">
-              {statsData ? statsData.cpuMoreThan90C : 0}
+              {statsData ? statsData.trafoMoreThan90C : 0}
             </p>
             <p className="font-poppins text-xs">{"Suhu > 90°C"}</p>
           </div>
