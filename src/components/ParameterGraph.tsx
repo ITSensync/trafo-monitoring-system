@@ -40,13 +40,13 @@ export default function ParameterGraph() {
       x: {
         title: {
           display: true,
-          text: "Jam",
+          text: "Time",
         },
       },
       y: {
         title: {
           display: true,
-          text: "Jumlah Site",
+          text: "Total Site",
         },
       },
     },

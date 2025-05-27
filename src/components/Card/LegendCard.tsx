@@ -7,16 +7,16 @@ export default function LegendCard({ totalSite }: { totalSite: number }) {
 
   const getBadgeText = (param: string) => {
     switch (param) {
-      case "suhu":
-        return "Suhu > 90°C";
+      case "temp":
+        return "Temp > 90°C";
       case "volt":
         return "Volt < 250V";
-      case "arus1":
-        return "Arus 1 > 300 A";
-      case "arus2":
-        return "Arus 2 > 300 A";
-      case "arus3":
-        return "Arus 3 > 300 A";
+      case "phase1":
+        return "Phase 1 > 300 A";
+      case "phase2":
+        return "Phase 2 > 300 A";
+      case "phase3":
+        return "Phase 3 > 300 A";
       default:
         return "-";
     }
@@ -24,15 +24,15 @@ export default function LegendCard({ totalSite }: { totalSite: number }) {
 
   const getBadgeColor = (param: string) => {
     switch (param) {
-      case "suhu":
+      case "temp":
         return "badge-error";
       case "volt":
         return "badge-warning";
-      case "arus1":
+      case "phase1":
         return "badge-info";
-      case "arus2":
+      case "phase2":
         return "badge-info";
-      case "arus3":
+      case "phase3":
         return "badge-info";
       default:
         return "badge-ghost";

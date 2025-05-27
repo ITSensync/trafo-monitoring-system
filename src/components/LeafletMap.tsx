@@ -94,15 +94,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
 
   const getBadgeText = (param: string, siteCoor: any) => {
     switch (param) {
-      case "suhu":
+      case "temp":
         return `${siteCoor.suhu_trafo} °C`;
       case "volt":
         return `${siteCoor.volt} V`;
-      case "arus1":
+      case "phase1":
         return `${siteCoor.arus1} A`;
-      case "arus2":
+      case "phase2":
         return `${siteCoor.arus2} A`;
-      case "arus3":
+      case "phase3":
         return `${siteCoor.arus3} A`;
       default:
         return "-";
@@ -111,15 +111,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
 
   const getBadgeColor = (param: string) => {
     switch (param) {
-      case "suhu":
+      case "temp":
         return "badge-error";
       case "volt":
         return "badge-warning";
-      case "arus1":
+      case "phase1":
         return "badge-info";
-      case "arus2":
+      case "phase2":
         return "badge-info";
-      case "arus3":
+      case "phase3":
         return "badge-info";
       default:
         return "badge-ghost";
@@ -128,15 +128,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
 
   const renderTable = (param: string, siteCoor: any) => {
     switch (param) {
-      case "suhu":
+      case "temp":
         return (
-          <table className="table">
+          <table className="table table-xs">
             <thead className="text-black font-bold">
-              <tr>
+              <tr className="text-xs">
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Arus1 (A)</th>
-                <th className="px-1 py-2">Arus2 (A)</th>
-                <th className="px-1 py-2">Arus3 (A)</th>
+                <th className="px-1 py-2">Phase1 (A)</th>
+                <th className="px-1 py-2">Phase2 (A)</th>
+                <th className="px-1 py-2">Phase3 (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -151,13 +151,13 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
         );
       case "volt":
         return (
-          <table className="table">
+          <table className="table table-xs">
             <thead className="text-black font-bold">
-              <tr>
-                <th className="px-1 py-2">Suhu (°C)</th>
-                <th className="px-1 py-2">Arus1 (A)</th>
-                <th className="px-1 py-2">Arus2 (A)</th>
-                <th className="px-1 py-2">Arus3 (A)</th>
+              <tr className="text-xs">
+                <th className="px-1 py-2">Temp (°C)</th>
+                <th className="px-1 py-2">Phase1 (A)</th>
+                <th className="px-1 py-2">Phase2 (A)</th>
+                <th className="px-1 py-2">Phase3 (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -170,15 +170,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "arus1":
+      case "phase1":
         return (
-          <table className="table">
+          <table className="table table-xs">
             <thead className="text-black font-bold">
-              <tr>
-                <th className="px-1 py-2">Suhu (°C)</th>
+              <tr className="text-xs">
+                <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Arus2 (A)</th>
-                <th className="px-1 py-2">Arus3 (A)</th>
+                <th className="px-1 py-2">Phase2 (A)</th>
+                <th className="px-1 py-2">Phase3 (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -191,15 +191,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "arus2":
+      case "phase2":
         return (
-          <table className="table">
+          <table className="table tablex-xs">
             <thead className="text-black font-bold">
-              <tr>
-                <th className="px-1 py-2">Suhu (°C)</th>
+              <tr className="text-xs">
+                <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Arus1 (A)</th>
-                <th className="px-1 py-2">Arus3 (A)</th>
+                <th className="px-1 py-2">Phase1 (A)</th>
+                <th className="px-1 py-2">Phase3 (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -212,15 +212,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "arus3":
+      case "phase3":
         return (
-          <table className="table">
-            <thead className="text-black font-bold">
+          <table className="table table-xs">
+            <thead className="text-black font-bold text-xs">
               <tr>
-                <th className="px-1 py-2">Suhu (°C)</th>
+                <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Arus1 (A)</th>
-                <th className="px-1 py-2">Arus2 (A)</th>
+                <th className="px-1 py-2">Phase1 (A)</th>
+                <th className="px-1 py-2">Phase2 (A)</th>
               </tr>
             </thead>
             <tbody>

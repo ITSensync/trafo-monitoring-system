@@ -49,7 +49,7 @@ export default function page() {
         <div className="flex flex-row items-center justify-between w-full px-5 mb-4">
           <DayPick />
           <p className="font-poppins font-bold text-red-400 text-xl">
-            {`Suhu > 90°C Grafik`}
+            {`Temperature > 90°C Chart`}
           </p>
         </div>
         <ParameterGraph />
