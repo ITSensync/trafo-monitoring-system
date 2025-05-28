@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { cookies } from "next/headers";
-import { unauthorized } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function BaseLayout({
   children,
@@ -14,7 +14,7 @@ export default async function BaseLayout({
 }>) {
   const existingToken = (await cookies()).get("auth_token")?.value;
   if (!existingToken) {
-    unauthorized();
+    redirect("/login");
   }
 
   return (

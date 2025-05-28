@@ -11,12 +11,12 @@ export default function LegendCard({ totalSite }: { totalSite: number }) {
         return "Temp > 90°C";
       case "volt":
         return "Volt < 250V";
-      case "phase1":
-        return "Phase 1 > 300 A";
-      case "phase2":
-        return "Phase 2 > 300 A";
-      case "phase3":
-        return "Phase 3 > 300 A";
+      case "phaseR":
+        return "Phase R > 300 A";
+      case "phaseS":
+        return "Phase S > 300 A";
+      case "phaseT":
+        return "Phase T > 300 A";
       default:
         return "-";
     }
@@ -28,11 +28,11 @@ export default function LegendCard({ totalSite }: { totalSite: number }) {
         return "badge-error";
       case "volt":
         return "badge-warning";
-      case "phase1":
+      case "phaseR":
         return "badge-info";
-      case "phase2":
+      case "phaseS":
         return "badge-info";
-      case "phase3":
+      case "phaseT":
         return "badge-info";
       default:
         return "badge-ghost";

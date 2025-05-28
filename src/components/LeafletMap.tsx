@@ -98,11 +98,11 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
         return `${siteCoor.suhu_trafo} °C`;
       case "volt":
         return `${siteCoor.volt} V`;
-      case "phase1":
+      case "phaseR":
         return `${siteCoor.arus1} A`;
-      case "phase2":
+      case "phaseS":
         return `${siteCoor.arus2} A`;
-      case "phase3":
+      case "phaseT":
         return `${siteCoor.arus3} A`;
       default:
         return "-";
@@ -115,11 +115,11 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
         return "badge-error";
       case "volt":
         return "badge-warning";
-      case "phase1":
+      case "phaseR":
         return "badge-info";
-      case "phase2":
+      case "phaseS":
         return "badge-info";
-      case "phase3":
+      case "phaseT":
         return "badge-info";
       default:
         return "badge-ghost";
@@ -134,9 +134,9 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             <thead className="text-black font-bold">
               <tr className="text-xs">
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Phase1 (A)</th>
-                <th className="px-1 py-2">Phase2 (A)</th>
-                <th className="px-1 py-2">Phase3 (A)</th>
+                <th className="px-1 py-2">Phase R (A)</th>
+                <th className="px-1 py-2">Phase S (A)</th>
+                <th className="px-1 py-2">Phase T (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -155,9 +155,9 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             <thead className="text-black font-bold">
               <tr className="text-xs">
                 <th className="px-1 py-2">Temp (°C)</th>
-                <th className="px-1 py-2">Phase1 (A)</th>
-                <th className="px-1 py-2">Phase2 (A)</th>
-                <th className="px-1 py-2">Phase3 (A)</th>
+                <th className="px-1 py-2">Phase R (A)</th>
+                <th className="px-1 py-2">Phase S (A)</th>
+                <th className="px-1 py-2">Phase T (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -170,15 +170,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "phase1":
+      case "phaseR":
         return (
           <table className="table table-xs">
             <thead className="text-black font-bold">
               <tr className="text-xs">
                 <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Phase2 (A)</th>
-                <th className="px-1 py-2">Phase3 (A)</th>
+                <th className="px-1 py-2">Phase S (A)</th>
+                <th className="px-1 py-2">Phase T (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -191,15 +191,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "phase2":
+      case "phaseS":
         return (
           <table className="table tablex-xs">
             <thead className="text-black font-bold">
               <tr className="text-xs">
                 <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Phase1 (A)</th>
-                <th className="px-1 py-2">Phase3 (A)</th>
+                <th className="px-1 py-2">Phase R (A)</th>
+                <th className="px-1 py-2">Phase T (A)</th>
               </tr>
             </thead>
             <tbody>
@@ -212,15 +212,15 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             </tbody>
           </table>
         );
-      case "phase3":
+      case "phaseT":
         return (
           <table className="table table-xs">
             <thead className="text-black font-bold text-xs">
               <tr>
                 <th className="px-1 py-2">Temp (°C)</th>
                 <th className="px-1 py-2">Volt (V)</th>
-                <th className="px-1 py-2">Phase1 (A)</th>
-                <th className="px-1 py-2">Phase2 (A)</th>
+                <th className="px-1 py-2">Phase R (A)</th>
+                <th className="px-1 py-2">Phase S (A)</th>
               </tr>
             </thead>
             <tbody>

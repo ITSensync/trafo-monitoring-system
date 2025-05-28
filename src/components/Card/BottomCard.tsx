@@ -120,13 +120,13 @@ export default function BottomCard({
             <p className="font-poppins font-extrabold text-3xl">
               {statsData ? statsData.moreThan300A1 : 0}
             </p>
-            <p className="font-poppins text-xs">{"Phase 1 > 300A"}</p>
+            <p className="font-poppins text-xs">{"Phase R > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-               href={{ pathname: "/map", query: { param: "phase1" } }}
+               href={{ pathname: "/map", query: { param: "phaseR" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="See Map"
               >
@@ -144,7 +144,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={{ pathname: "/graph", query: { param: "phase1" } }}
+                href={{ pathname: "/graph", query: { param: "phaseR" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="See Chart"
               >
@@ -171,13 +171,13 @@ export default function BottomCard({
             <p className="font-poppins font-extrabold text-3xl">
               {statsData ? statsData.moreThan300A2 : 0}
             </p>
-            <p className="font-poppins text-xs">{"Phase 2 > 300A"}</p>
+            <p className="font-poppins text-xs">{"Phase S > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={{ pathname: "/map", query: { param: "phase2" } }}
+                href={{ pathname: "/map", query: { param: "phaseS" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="See Map"
               >
@@ -195,7 +195,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={{ pathname: "/graph", query: { param: "phase2" } }}
+                href={{ pathname: "/graph", query: { param: "phaseS" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="See Chart"
               >
@@ -222,13 +222,13 @@ export default function BottomCard({
             <p className="font-poppins font-extrabold text-3xl">
               {statsData ? statsData.moreThan300A3 : 0}
             </p>
-            <p className="font-poppins text-xs">{"Phase 3 > 300A"}</p>
+            <p className="font-poppins text-xs">{"Phase T > 300A"}</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FlashAutoIcon color="info" fontSize="large" />
             <div className="flex flex-row">
               <Link
-                href={{ pathname: "/map", query: { param: "phase3" } }}
+                href={{ pathname: "/map", query: { param: "phaseT" } }}
                 className="tooltip tooltip-primary hover:cursor-pointer"
                 data-tip="See Map"
               >
@@ -246,7 +246,7 @@ export default function BottomCard({
                 </svg>
               </Link>
               <Link
-                href={{ pathname: "/graph", query: { param: "arus3" } }}
+                href={{ pathname: "/graph", query: { param: "phaseT" } }}
                 className="tooltip tooltip-secondary hover:cursor-pointer"
                 data-tip="See Chart"
               >
