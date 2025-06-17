@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-require-imports */
 "use client";
 import "leaflet/dist/leaflet.css";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet-defaulticon-compatibility";
@@ -30,67 +29,8 @@ function RecenterButton({ center }: { center: L.LatLngExpression }) {
   );
 }
 
-const customIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-const yellowIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
-  const searchParams = useSearchParams();
-  const param = searchParams.get("param");
-  const mapRef = useRef(null);
-  const updatedMapData = mapData.map((item) => ({
-    lat: item.Trafo.lat,
-    lng: item.Trafo.lng,
-    alamat:
-      "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-    ...item,
-  }));
-  const siteCoordinates = Array.from({ length: 14 }, () => {
-    const lat = 3.5952 + (Math.random() - 0.5) * 0.105; // ±0.1 derajat
-    const lng = 98.6722 + (Math.random() - 0.5) * 0.105;
-    const suhu_trafo = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
-    const suhu_cpu = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
-    const arus1 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const arus2 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const arus3 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const volt = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const trafoId = "T-0002-KEC_B";
-    const createdAt = "2025-05-26T11:09:51.735Z";
-    return {
-      lat,
-      lng,
-      alamat:
-        "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      suhu_trafo,
-      suhu_cpu,
-      volt,
-      arus1,
-      arus2,
-      arus3,
-      trafoId,
-      createdAt,
-    };
-  });
-
-  const combinedSite = [...updatedMapData, ...siteCoordinates];
+function MarkerPopup({ siteCoor, param }: { siteCoor: any; param: string }) {
+  const [editState, setEditState] = useState(false);
 
   const getBadgeText = (param: string, siteCoor: any) => {
     switch (param) {
@@ -126,7 +66,7 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
     }
   };
 
-  const renderTable = (param: string, siteCoor: any) => {
+  const renderTable = () => {
     switch (param) {
       case "temp":
         return (
@@ -239,6 +179,173 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
   };
 
   return (
+    <div className="font-montserrat w-fit pb-2">
+      <div className="flex justify-between items-center mt-6">
+        <h3 className="text-lg font-black">{siteCoor.trafoId}</h3>
+        <span
+          className={`badge ${getBadgeColor(
+            param ? param : "-"
+          )} text-white font-bold p-2`}
+        >
+          {getBadgeText(param ? param : "-", siteCoor)}
+        </span>
+      </div>
+      <div className="flex flex-row justify-between items-center text-xs mt-2">
+        <div className="flex flex-row items-center">
+          {editState ? (
+            <div className="flex flex-row items-end gap-1">
+              <div className="flex gap-1 flex-col items-start w-1/2 ">
+                <h5 className="text-xs">LU</h5>
+                <input
+                  type="number"
+                  placeholder="3.9243"
+                  className="input input-xs input-neutral w-13"
+                />
+              </div>
+              <div className="flex gap-1 flex-col items-start w-1/2">
+                <h5 className="text-xs">LS</h5>
+                <input
+                  type="number"
+                  placeholder="149.9243"
+                  className="input input-xs input-neutral w-13"
+                />
+              </div>
+              <button
+                className="btn btn-square btn-error btn-xs"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setEditState(false);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-3 fill-white"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              <button className="btn btn-square btn-success btn-xs">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-3 fill-white"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <>
+              <h5 className="text-xs ">
+                {Math.floor(siteCoor.lat * 1000) / 1000} LU,{" "}
+                {Math.floor(siteCoor.lng * 1000) / 1000} LS
+              </h5>
+              <div
+                className="tooltip tooltip-info tool text-white cursor-pointer ml-2"
+                data-tip="Edit Loc."
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setEditState(true);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-4 fill-blue-400"
+                >
+                  <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                  <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                </svg>
+              </div>
+            </>
+          )}
+        </div>
+
+        <h5 className="italic text-xs">{textTime(siteCoor.createdAt)}</h5>
+      </div>
+      <h5 className="text-sm text-justify mt-4 mb-3">{siteCoor.alamat}</h5>
+      <div className="overflow-x-fit rounded-box border border-zinc-900 bg-white-200">
+        {renderTable()}
+      </div>
+    </div>
+  );
+}
+
+const customIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const yellowIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
+  const searchParams = useSearchParams();
+  const param = searchParams.get("param");
+  const mapRef = useRef(null);
+  const updatedMapData = mapData.map((item) => ({
+    lat: item.Trafo.lat,
+    lng: item.Trafo.lng,
+    alamat:
+      "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    ...item,
+  }));
+  const siteCoordinates = Array.from({ length: 14 }, () => {
+    const lat = 3.5952 + (Math.random() - 0.5) * 0.105; // ±0.1 derajat
+    const lng = 98.6722 + (Math.random() - 0.5) * 0.105;
+    const suhu_trafo = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
+    const suhu_cpu = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
+    const arus1 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
+    const arus2 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
+    const arus3 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
+    const volt = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
+    const trafoId = "T-0002-KEC_B";
+    const createdAt = "2025-05-26T11:09:51.735Z";
+    return {
+      lat,
+      lng,
+      alamat:
+        "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      suhu_trafo,
+      suhu_cpu,
+      volt,
+      arus1,
+      arus2,
+      arus3,
+      trafoId,
+      createdAt,
+    };
+  });
+
+  const combinedSite = [...updatedMapData, ...siteCoordinates];
+
+  return (
     <div className="relative">
       <MapContainer
         center={[3.5952, 98.6722]}
@@ -260,31 +367,7 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
             icon={siteCoor.trafoId === "T-0001-KEC_A" ? customIcon : yellowIcon}
           >
             <Popup>
-              <div className="font-montserrat w-fit pb-2">
-                <div className="flex justify-between items-center mt-6">
-                  <h3 className="text-lg font-black">{siteCoor.trafoId}</h3>
-                  <span
-                    className={`badge ${getBadgeColor(
-                      param ? param : "-"
-                    )} text-white font-bold p-2`}
-                  >
-                    {getBadgeText(param ? param : "-", siteCoor)}
-                  </span>
-                </div>
-                <div className="flex flex-row justify-between items-center text-xs mt-2">
-                  <h5 className="text-xs ">
-                    {Math.floor(siteCoor.lat * 1000) / 1000} LU,{" "}
-                    {Math.floor(siteCoor.lng * 1000) / 1000} LS
-                  </h5>
-                  <span className="italic">{textTime(siteCoor.createdAt)}</span>
-                </div>
-                <h5 className="text-sm text-justify mt-4 mb-3">
-                  {siteCoor.alamat}
-                </h5>
-                <div className="overflow-x-fit rounded-box border border-zinc-900 bg-white-200">
-                  {renderTable(param ? param : "-", siteCoor)}
-                </div>
-              </div>
+              <MarkerPopup siteCoor={siteCoor} param={param ?? "-"} />
             </Popup>
           </Marker>
         ))}
