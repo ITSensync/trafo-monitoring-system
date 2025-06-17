@@ -1,3 +1,5 @@
+import { Trafo } from "./Trafo";
+
 export type Monitoring = {
   id: number;
   suhu_cpu: number;
@@ -8,4 +10,5 @@ export type Monitoring = {
   arus3: number;
   createdAt: string;
   trafoId: string;
+  Trafo: Trafo
 };

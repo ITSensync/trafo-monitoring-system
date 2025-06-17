@@ -57,8 +57,8 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
   const param = searchParams.get("param");
   const mapRef = useRef(null);
   const updatedMapData = mapData.map((item) => ({
-    lat: 3.5952 + (Math.random() - 0.5) * 0.105,
-    lng: 98.6722 + (Math.random() - 0.5) * 0.105,
+    lat: item.Trafo.lat,
+    lng: item.Trafo.lng,
     alamat:
       "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
     ...item,
