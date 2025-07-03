@@ -411,7 +411,7 @@ const customIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const yellowIcon = new L.Icon({
+/* const yellowIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png",
   shadowUrl:
@@ -420,7 +420,7 @@ const yellowIcon = new L.Icon({
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
-});
+}); */
 
 export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
   const searchParams = useSearchParams();
@@ -432,34 +432,6 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
     alamat: item.Trafo.location?.alamat,
     ...item,
   }));
-  const siteCoordinates = Array.from({ length: 14 }, () => {
-    const lat = 3.5952 + (Math.random() - 0.5) * 0.105; // ±0.1 derajat
-    const lng = 98.6722 + (Math.random() - 0.5) * 0.105;
-    const suhu_trafo = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
-    const suhu_cpu = parseFloat((Math.random() * (100 - 90) + 90).toFixed(2));
-    const arus1 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const arus2 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const arus3 = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const volt = parseFloat((Math.random() * (300 - 100) + 100).toFixed(2));
-    const trafoId = "T-0002-KEC_B";
-    const createdAt = "2025-05-26T11:09:51.735Z";
-    return {
-      lat,
-      lng,
-      alamat:
-        "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      suhu_trafo,
-      suhu_cpu,
-      volt,
-      arus1,
-      arus2,
-      arus3,
-      trafoId,
-      createdAt,
-    };
-  });
-
-  const combinedSite = [...updatedMapData, ...siteCoordinates];
 
   return (
     <div className="relative">
@@ -476,17 +448,27 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
           attribution="&copy; OpenStreetMap"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {combinedSite.map((siteCoor, index) => (
-          <Marker
-            key={index}
-            position={[siteCoor.lat, siteCoor.lng]}
-            icon={siteCoor.trafoId === "T-0001-KEC_A" ? customIcon : yellowIcon}
-          >
-            <Popup>
-              <MarkerPopup siteCoor={siteCoor} param={param ?? "-"} />
-            </Popup>
-          </Marker>
-        ))}
+        {updatedMapData.map((siteCoor, index) => {
+          if (
+            (param == "temp" && siteCoor.suhu_trafo > 90) ||
+            (param == "volt" && siteCoor.volt < 250) ||
+            (param == "phaseR" && siteCoor.arus1 > 300) ||
+            (param == "phaseS" && siteCoor.arus2 > 300) ||
+            (param == "phaseT" && siteCoor.arus3 > 300)
+          ) {
+            return (
+              <Marker
+                key={index}
+                position={[siteCoor.lat, siteCoor.lng]}
+                icon={customIcon}
+              >
+                <Popup>
+                  <MarkerPopup siteCoor={siteCoor} param={param ?? "-"} />
+                </Popup>
+              </Marker>
+            );
+          }
+        })}
       </MapContainer>
     </div>
   );
