@@ -54,7 +54,7 @@ export default function ParameterMap() {
         break;
       case "volt":
         latestData.forEach((item) => {
-          if (item.volt < 200) {
+          if (item.volt < 250) {
             count++;
           }
         });
