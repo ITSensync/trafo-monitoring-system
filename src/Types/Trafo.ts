@@ -1,3 +1,5 @@
+import { Location } from "./Location";
+
 export type Trafo = {
   id: string;
   status: string;
@@ -8,4 +10,5 @@ export type Trafo = {
   locationId: string;
   createdAt: string;
   updatedAt: string;
+  location?: Location;
 };

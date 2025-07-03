@@ -429,8 +429,7 @@ export default function LeafletMap({ mapData }: { mapData: Monitoring[] }) {
   const updatedMapData = mapData.map((item) => ({
     lat: item.Trafo.lat,
     lng: item.Trafo.lng,
-    alamat:
-      "Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    alamat: item.Trafo.location?.alamat,
     ...item,
   }));
   const siteCoordinates = Array.from({ length: 14 }, () => {
