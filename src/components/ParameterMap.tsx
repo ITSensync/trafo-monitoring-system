@@ -6,9 +6,11 @@ import dynamic from "next/dynamic";
 import React, { useEffect, useMemo, useState } from "react";
 import LegendCard from "./Card/LegendCard";
 import { useSearchParams } from "next/navigation";
+import { StatsData } from "@/Types/Stats";
 
 export default function ParameterMap() {
   const [latestData, setLatestData] = useState<Monitoring[]>([]);
+  const [statsData, setStatsData] = useState<StatsData>();
   const searchParams = useSearchParams();
   const param = searchParams.get("param");
   const LeafletComponent = useMemo(
@@ -38,58 +40,49 @@ export default function ParameterMap() {
     }
   };
 
+  const loadStats = async () => {
+    const responseStats = await monitoringService.getStats();
+    if (responseStats.data) {
+      const statsResponseData: StatsData = responseStats.data;
+      setStatsData(statsResponseData);
+    } else {
+      console.log("NO STATS DATA");
+    }
+  };
+
   useEffect(() => {
     loadData();
+    loadStats();
   }, []);
 
-  const getTotalSiteByParam = (latestData: Monitoring[]) => {
-    let count = 0;
+  const getTotalSiteByParam = () => {
+    let countSite = 0;
     switch (param) {
       case "temp":
-        latestData.forEach((item) => {
-          if (item.suhu_trafo > 90) {
-            count++;
-          }
-        });
+        countSite = statsData ? statsData.cpuMoreThan90C : 0;
         break;
       case "volt":
-        latestData.forEach((item) => {
-          if (item.volt < 250) {
-            count++;
-          }
-        });
+        countSite = statsData ? statsData.lessThan250V : 0;
         break;
       case "phaseR":
-        latestData.forEach((item) => {
-          if (item.arus1 > 300) {
-            count++;
-          }
-        });
+        countSite = statsData ? statsData.moreThan300A1 : 0;
         break;
       case "phaseS":
-        latestData.forEach((item) => {
-          if (item.arus2 > 300) {
-            count++;
-          }
-        });
+        countSite = statsData ? statsData.moreThan300A2 : 0;
         break;
       case "phaseT":
-        latestData.forEach((item) => {
-          if (item.arus3 > 300) {
-            count++;
-          }
-        });
+        countSite = statsData ? statsData.moreThan300A3 : 0;
         break;
       default:
         break;
     }
 
-    return count;
+    return countSite;
   };
 
   return (
     <div>
-      <LegendCard totalSite={getTotalSiteByParam(latestData)} />
+      <LegendCard totalSite={getTotalSiteByParam()} />
       <LeafletComponent mapData={latestData} />
     </div>
   );
