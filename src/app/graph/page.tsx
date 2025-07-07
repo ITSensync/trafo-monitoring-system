@@ -1,6 +1,7 @@
 import BaseLayout from "@/components/BaseLayout";
 import DayPick from "@/components/DayPick";
 import ParameterGraph from "@/components/ParameterGraph";
+import TitleChart from "@/components/TitleChart";
 import { Metadata } from "next";
 import React from "react";
 import "react-day-picker/style.css";
@@ -48,9 +49,7 @@ export default function page() {
       <div className="bg-white/95 my-5 mx-5 rounded-xl px-6 pt-5 pb-4 h-fit">
         <div className="flex flex-row items-center justify-between w-full px-5 mb-4">
           <DayPick />
-          <p className="font-poppins font-bold text-red-400 text-xl">
-            {`Temperature > 90°C Chart`}
-          </p>
+          <TitleChart />
         </div>
         <ParameterGraph />
       </div>
