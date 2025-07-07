@@ -3,7 +3,13 @@ import React from "react";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import "react-day-picker/style.css";
 
-export default function DayPick() {
+export default function DayPick({
+  date,
+  setDate,
+}: {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+}) {
   const defaultClassNames = getDefaultClassNames();
   return (
     <div className="w-1/2 flex flex-col items-start">
@@ -13,8 +19,8 @@ export default function DayPick() {
         className="input input-border input-warning w-[15dvw]"
         style={{ anchorName: "--rdp" } as React.CSSProperties}
       >
-        {/* {date ? date.toLocaleDateString() : "Pick a date"} */}
-        Pick a Date
+        {date ? date.toLocaleDateString() : "Pick a date"}
+        {/* Pick a Date */}
       </button>
       <div
         popover="auto"
@@ -31,8 +37,8 @@ export default function DayPick() {
             button_next: `${defaultClassNames.button_next} `,
           }}
           mode="single"
-          // selected={date}
-          // onSelect={setDate}
+          selected={date}
+          onSelect={setDate}
         />
       </div>
     </div>

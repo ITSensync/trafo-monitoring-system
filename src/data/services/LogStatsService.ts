@@ -10,9 +10,9 @@ export class LogStatsService {
     });
   }
 
-  getLogStats = () => {
+  getLogStats = (date: string) => {
     return this.instance
-      .get("/")
+      .get(`?date=${date}`)
       .then((res) => {
         return res.data;
       })

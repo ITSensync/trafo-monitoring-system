@@ -17,13 +17,13 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
-export default function ParameterGraph() {
+export default function ParameterGraph({ date }: { date: string }) {
   const searchParams = useSearchParams();
   const param = searchParams.get("param");
   const [logStatsData, setLogStatsData] = useState<LogStats[]>([]);
 
   const loadData = async () => {
-    const response = await logStatsService.getLogStats();
+    const response = await logStatsService.getLogStats(date);
     if (response.data) {
       const logData: [] = response.data;
       setLogStatsData(logData);
@@ -68,7 +68,7 @@ export default function ParameterGraph() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [date]);
 
   Chart.register(
     Title,

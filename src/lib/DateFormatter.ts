@@ -23,3 +23,13 @@ export function isoToTime(date: string) {
 
   return formatted;
 }
+
+export function dateToYYYYMMDD(date: Date) {
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0"); // bulan dari 0–11
+  const dd = String(date.getDate()).padStart(2, "0");
+
+  const formatted = `${yyyy}-${mm}-${dd}`;
+
+  return formatted;
+}
