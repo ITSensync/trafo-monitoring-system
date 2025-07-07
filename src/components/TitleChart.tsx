@@ -31,8 +31,25 @@ export default function TitleChart() {
     return result;
   };
 
+  const getTextColor = () => {
+    switch (param) {
+      case "temp":
+        return "text-red-400";
+      case "volt":
+        return "text-yellow-400";
+      case "phaseR":
+        return "text-blue-400";
+      case "phaseS":
+        return "text-blue-400";
+      case "phaseT":
+        return "text-blue-400";
+      default:
+        return "text-zinc-900";
+    }
+  };
+
   return (
-    <p className="font-poppins font-bold text-red-400 text-xl">
+    <p className={`font-poppins font-bold ${getTextColor()} text-xl`}>
       {getTitleFunction(param ?? "")}
     </p>
   );
