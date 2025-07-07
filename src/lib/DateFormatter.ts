@@ -15,3 +15,11 @@ export function textTime(date: string) {
 
   return formatted;
 }
+
+export function isoToTime(date: string) {
+  const timeZone = "UTC";
+  const zonedDate = toZonedTime(date, timeZone);
+  const formatted = format(zonedDate, "HH:mm", { timeZone });
+
+  return formatted;
+}
